@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import axios from 'axios'
 import UserTable from './UserTable'
-
+import {withRouter} from 'react-router-dom'
 
 class View extends React.Component {
 
@@ -13,6 +13,7 @@ class View extends React.Component {
     }
 
     componentDidMount(){
+        
         axios.get('http://localhost:5000/users/').then(res=>{
             this.setState({
                 data:res.data
@@ -60,4 +61,4 @@ class View extends React.Component {
     }
 }
 
-export default View
+export default withRouter(View)

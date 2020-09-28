@@ -75,8 +75,9 @@ class EditUser extends Component {
           gender:res.data.gender,
           email: res.data.email,
           mobile: res.data.mobile,
-          category:this.data.category
+          category:res.data.category
         });
+        console.log(this.state);
       })
       .catch((error) => {
         console.log(error);
@@ -269,7 +270,6 @@ class EditUser extends Component {
                     type="radio"
                     name="gender"
                     id="male"
-                    value={this.state.gender}
                     onChange={(e) => {
                       this.setState({ gender: e.target.value });
                     }}
@@ -309,6 +309,7 @@ class EditUser extends Component {
                   id="email"
                   placeholder="Email"
                   name="email"
+                  value={this.state.email}
                   onChange={this.handleChange}
                   formNoValidate
                 />
@@ -330,6 +331,7 @@ class EditUser extends Component {
                   id="mobile"
                   placeholder="Mobile"
                   name="mobile"
+                  value={this.state.mobile}
                   onChange={this.handleChange}
                   formNoValidate
                 />

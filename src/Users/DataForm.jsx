@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "./Modal";
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 
 const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -257,6 +258,7 @@ class DataForm extends Component {
                 profilePic: "",
             })   
         });
+        window.location.reload(true)
         console.log(this.state);
 
     } else {
@@ -482,7 +484,7 @@ class DataForm extends Component {
               </div>
             </div>
             <button className="btn btn-primary" type="submit">
-              Preview
+              Save
             </button>
             {/* {this.state.showModal && (<Modal name={this.state.name}
                             gender={this.state.gender}
@@ -499,4 +501,4 @@ class DataForm extends Component {
   }
 }
 
-export default DataForm;
+export default withRouter(DataForm);

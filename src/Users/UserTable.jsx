@@ -1,9 +1,21 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class UserTable extends Component {
   constructor(props) {
     super(props);
+    this.deleteStudent = this.deleteStudent.bind(this);
+  }
+
+  deleteStudent(){
+    axios.delete('http://localhost:5000/users/delete-user/'+this.props.userData._id)
+    .then((res)=>{
+      console.log(res);
+      window.location.reload(true)
+    }).catch((err)=>{
+      console.log(err);
+    })
   }
 
   render() {

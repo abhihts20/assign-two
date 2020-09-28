@@ -20,6 +20,7 @@ router.route("/create-user").post((req, res, next) => {
 router.route("/").get((req, res) => {
   userSchema.find((error, data) => {
     if (error) {
+      // eslint-disable-next-line no-undef
       return next(error);
     } else {
       console.log(data);
@@ -32,6 +33,7 @@ router.route("/").get((req, res) => {
 router.route("/edit-user/:id").get((req, res) => {
   userSchema.findById(req.params.id, (error, data) => {
     if (error) {
+      // eslint-disable-next-line no-undef
       return next(error);
     } else {
       res.json(data);
