@@ -39,7 +39,8 @@ class Modal extends React.Component {
 
         axios.post('http://localhost:5000/users/create-user',userObject).then(res=>console.log(res));
         this.setState({openModal:!this.state.openModal})
-        this.props.history.push('/')
+        // this.props.history.push('/users/view')
+        window.location.reload(true)
 
     };
     render() {

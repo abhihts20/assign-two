@@ -227,39 +227,38 @@ class DataForm extends Component {
 
     if (formValid(this.state)) {
       //
-      // this.setState({showModal:!this.state.showModal})
-      const userObject = {
-        name: this.state.name,
-        gender: this.state.gender,
-        email: this.state.email,
-        mobile: this.state.mobile,
-        category: this.state.category,
-        technology: this.state.techArr,
-        profilePic: this.state.profilePic,
-      };
+      this.setState({showModal:!this.state.showModal})
+      // const userObject = {
+      //   name: this.state.name,
+      //   gender: this.state.gender,
+      //   email: this.state.email,
+      //   mobile: this.state.mobile,
+      //   category: this.state.category,
+      //   technology: this.state.techArr,
+      //   profilePic: this.state.profilePic,
+      // };
       
-      axios
-        .post("http://localhost:5000/users/create-user", userObject)
-        .then((res) => {console.log(res)
-            this.setState({
-                name:"",
-                gender:"",
-                email: "",
-                mobile: "",
-                category: "",
-                technology: {
-                    C: false,
-                    "C++": false,
-                    Java: false,
-                    Python: false,
-                    Javascript: false,
-                  },
-                techArr: [],
-                profilePic: "",
-            })   
-        });
-        window.location.reload(true)
-        console.log(this.state);
+
+        // .then((res) => {console.log(res)
+            //   this.setState({
+            //       name:"",
+            //       gender:"",
+            //       email: "",
+            //       mobile: "",
+            //       category: "",
+            //       technology: {
+            //           C: false,
+            //           "C++": false,
+            //           Java: false,
+            //           Python: false,
+            //           Javascript: false,
+            //         },
+            //       techArr: [],
+            //       profilePic: "",
+            // })
+        // });
+        // window.location.reload(true)
+        // console.log(this.state);
 
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -486,14 +485,14 @@ class DataForm extends Component {
             <button className="btn btn-primary" type="submit">
               Save
             </button>
-            {/* {this.state.showModal && (<Modal name={this.state.name}
+            {this.state.showModal && (<Modal name={this.state.name}
                             gender={this.state.gender}
                             email={this.state.email}
                             mobile={this.state.mobile}
                             category={this.state.category}
                             languages={this.state.techArr}
                             profilePic={this.state.profilePic}
-                            openModal={this.state.showModal} />)} */}
+                            openModal={this.state.showModal} />)}
           </form>
         </div>
       </div>

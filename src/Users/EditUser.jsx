@@ -270,6 +270,7 @@ class EditUser extends Component {
                     type="radio"
                     name="gender"
                     id="male"
+                    value="Male"
                     onChange={(e) => {
                       this.setState({ gender: e.target.value });
                     }}
@@ -440,6 +441,7 @@ class EditUser extends Component {
                   type="file"
                   className="form-control"
                   id="colFormLabelLg"
+                  value={this.state.profilePic}
                   placeholder="Choose Profile Pic"
                   onChange={this.imageUpload}
                 />
