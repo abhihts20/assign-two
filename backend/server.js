@@ -3,15 +3,18 @@ let mongoose = require("mongoose");
 let cors = require("cors");
 let bodyParser = require("body-parser");
 let dbConfig = require("./database/db");
-
+const app = express();
 const userRoute = require("../backend/routes/user.route");
 const { create } = require("./models/User");
 const { createRef } = require("react");
 
+
+app.use(express.static('./public'))
+
 mongoose.Promise = global.Promise;
 mongoose
   .connect(dbConfig.db, {
-    useNewUrlParser: true,
+    useNewUrlParser: true,useUnifiedTopology:true
   })
   .then(
     () => {
@@ -22,7 +25,7 @@ mongoose
     }
   );
 
-const app = express();
+
 app.use(express.json());
 app.use(
   express.urlencoded({

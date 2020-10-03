@@ -225,7 +225,7 @@ class DataForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formValid(this.state)) {
+    if (formValid(this.state)&&this.validateCheckBox) {
       //
       this.setState({showModal:!this.state.showModal})
       // const userObject = {
@@ -284,6 +284,7 @@ class DataForm extends Component {
                   id="name"
                   name="name"
                   placeholder="Name"
+                  required={true}
                   onChange={this.handleChange}
                   formNoValidate
                 />
@@ -348,6 +349,7 @@ class DataForm extends Component {
                   id="email"
                   placeholder="Email"
                   name="email"
+                  required={true}
                   onChange={this.handleChange}
                   formNoValidate
                 />
@@ -369,6 +371,7 @@ class DataForm extends Component {
                   id="mobile"
                   placeholder="Mobile"
                   name="mobile"
+                  required={true}
                   onChange={this.handleChange}
                   formNoValidate
                 />
@@ -478,6 +481,7 @@ class DataForm extends Component {
                   className="form-control"
                   id="colFormLabelLg"
                   placeholder="Choose Profile Pic"
+                  required={true}
                   onChange={this.imageUpload}
                 />
               </div>

@@ -1,9 +1,23 @@
-let express = require("express");
-let router = express.Router();
-let mongoose = require("mongoose");
+var express = require("express");
+var router = express.Router();
+var mongoose = require("mongoose");
+var multer = require('multer');
+var cors = require('cors');
+var fs=require('fs');
+var path=require('path');
+imageDir="./public"
 
 let userSchema = require("../models/User");
 
+
+var storage=multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,'../public')
+  },
+  filename:function(req,file,cb){
+    cb(null,Date.now()+"-"+file.originalname)
+  }
+})
 //Create a User
 router.route("/create-user").post((req, res, next) => {
   userSchema.create(req.body, (error, data) => {
@@ -40,6 +54,18 @@ router.route("/edit-user/:id").get((req, res) => {
     }
   });
 });
+
+
+router.route("/getfile/:filename").get((req,res)=>{
+    var files=fs.readdirSync(imageDir);
+    for (let index = 0; index < files.length; index++) {
+      if (files[index]===req.params.filename) {
+        res.status(200).json(files[index])
+      }else{
+        res.status(400).json({response:"file not found"})
+      }
+    }  
+})
 
 // Update single user
 router.route("/update-user/:id").put((req, res, next) => {
