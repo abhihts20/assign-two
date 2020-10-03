@@ -38,7 +38,14 @@ class Modal extends React.Component {
         }
 
         axios.post('http://localhost:5000/users/create-user',userObject).then(res=>console.log(res));
+        if(this.state.profilePic){
+            console.log("IMAGE HAI",this.props.imageData);
+            const data=new FormData()
+            data.append("image",this.props.imageData,this.props.imageData.name)
+            axios.post('http://localhost:5000/upload',data)
+        }
         this.setState({openModal:!this.state.openModal})
+
         // this.props.history.push('/users/view')
         window.location.reload(true)
 

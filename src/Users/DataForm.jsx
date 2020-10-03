@@ -32,6 +32,8 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
+var imageValue;
+
 class DataForm extends Component {
   constructor(props) {
     super(props);
@@ -67,6 +69,8 @@ class DataForm extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  
 
   handleChange = (e) => {
     e.preventDefault();
@@ -203,6 +207,7 @@ class DataForm extends Component {
 
   imageUpload = async (e) => {
     const file = e.target.files[0];
+    imageValue=file;
     getBase64(file).then((base64) => {
       localStorage["fileBase64"] = base64;
       this.setState({
@@ -496,6 +501,7 @@ class DataForm extends Component {
                             category={this.state.category}
                             languages={this.state.techArr}
                             profilePic={this.state.profilePic}
+                            imageData={imageValue}
                             openModal={this.state.showModal} />)}
           </form>
         </div>

@@ -10,14 +10,16 @@ imageDir="./public"
 let userSchema = require("../models/User");
 
 
-var storage=multer.diskStorage({
-  destination:function(req,file,cb){
-    cb(null,'../public')
-  },
-  filename:function(req,file,cb){
-    cb(null,Date.now()+"-"+file.originalname)
-  }
-})
+// var storage=multer.diskStorage({
+//   destination:function(req,file,cb){
+//     cb(null,'./public/')
+//   },
+//   filename:function(req,file,cb){
+//     cb(null,Date.now()+"-"+file.originalname)
+//   }
+// })
+
+// const upload=multer({storage})
 //Create a User
 router.route("/create-user").post((req, res, next) => {
   userSchema.create(req.body, (error, data) => {
@@ -29,6 +31,12 @@ router.route("/create-user").post((req, res, next) => {
     }
   });
 });
+
+// router.route('/upload',upload.single('image')).post((req,res,next)=>{
+//       if(req.file){
+//         res.json({imageUrl:`./public/${req.file.filename}`})
+//       }
+// })
 
 //Get all Users
 router.route("/").get((req, res) => {

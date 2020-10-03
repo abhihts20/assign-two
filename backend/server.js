@@ -1,15 +1,17 @@
 let express = require("express");
 let mongoose = require("mongoose");
 let cors = require("cors");
+let multer = require("multer");
 let bodyParser = require("body-parser");
 let dbConfig = require("./database/db");
 const app = express();
 const userRoute = require("../backend/routes/user.route");
 const { create } = require("./models/User");
 const { createRef } = require("react");
+imageDir="E://Product Dev//NodeJS//assign-two//public//";
 
 
-app.use(express.static('./public'))
+app.use(express.static('E://Product Dev//NodeJS//assign-two//public//'))
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -24,7 +26,16 @@ mongoose
       console.log("Could not connect to db:" + error);
     }
   );
-
+  var storage=multer.diskStorage({
+    destination:function(req,file,cb){
+      cb(null,'E://Product Dev//NodeJS//assign-two//public//')
+    },
+    filename:function(req,file,cb){
+      cb(null,Date.now()+"-"+file.originalname)
+    }
+  })
+  
+  const upload=multer({storage})
 
 app.use(express.json());
 app.use(
@@ -34,6 +45,11 @@ app.use(
 );
 app.use(cors());
 app.use("/users", userRoute);
+app.post('/upload',upload.single('image'),(req,res)=>{
+  if(req.file){
+    res.json({imageUrl:`./public/${req.file.filename}`})
+  }
+})
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
